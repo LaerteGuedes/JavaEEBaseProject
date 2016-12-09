@@ -49,7 +49,6 @@ public class UserBean implements Serializable{
     }
 
     public String add(User user){
-        System.out.println("ADD");
         userService.add(user);
 
         fc.getExternalContext().getFlash().setKeepMessages(true);
@@ -59,7 +58,6 @@ public class UserBean implements Serializable{
     }
 
     public String update(User user){
-        System.out.println("UPDATE");
         userService.update(user);
 
         fc.getExternalContext().getFlash().setKeepMessages(true);
@@ -76,7 +74,6 @@ public class UserBean implements Serializable{
     }
 
     public void load(){
-        System.out.println("LOAD");
         this.user = userService.findById(userId);
         this.user.setPassword("teste");
     }
