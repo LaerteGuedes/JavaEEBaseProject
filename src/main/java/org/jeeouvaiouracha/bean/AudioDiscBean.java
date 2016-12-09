@@ -1,6 +1,7 @@
 package org.jeeouvaiouracha.bean;
 
 import org.jeeouvaiouracha.domain.AudioDisc;
+import org.jeeouvaiouracha.domain.AudioDisc_2;
 import org.jeeouvaiouracha.services.AudioDiscService;
 
 import javax.faces.application.FacesMessage;
@@ -23,17 +24,17 @@ public class AudioDiscBean implements Serializable{
     @Inject
     private AudioDiscService service;
 
-    private AudioDisc audioDisc = new AudioDisc();
+    private AudioDisc_2 audioDisc = new AudioDisc_2();
 
-    public AudioDisc getAudioDisc() {
+    public AudioDisc_2 getAudioDisc() {
         return audioDisc;
     }
 
-    public void setAudioDisc(AudioDisc audioDisc) {
+    public void setAudioDisc(AudioDisc_2 audioDisc) {
         this.audioDisc = audioDisc;
     }
 
-    public String add(AudioDisc audioDisc){
+    public String add(AudioDisc_2 audioDisc){
         service.add(audioDisc);
 
         fc.getExternalContext().getFlash().setKeepMessages(true);

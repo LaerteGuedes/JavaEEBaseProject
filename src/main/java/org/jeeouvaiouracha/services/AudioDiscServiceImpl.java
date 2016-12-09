@@ -2,6 +2,7 @@ package org.jeeouvaiouracha.services;
 
 import org.jeeouvaiouracha.dao.AudioDiscDao;
 import org.jeeouvaiouracha.domain.AudioDisc;
+import org.jeeouvaiouracha.domain.AudioDisc_2;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -17,27 +18,27 @@ public class AudioDiscServiceImpl implements AudioDiscService {
     private AudioDiscDao dao;
 
     @Override
-    public void add(AudioDisc audioDisc) {
+    public void add(AudioDisc_2 audioDisc) {
         dao.add(audioDisc);
     }
 
     @Override
-    public void update(AudioDisc audioDisc) {
+    public void update(AudioDisc_2 audioDisc) {
         dao.update(audioDisc);
     }
 
     @Override
-    public List<AudioDisc> getAll() {
+    public List<AudioDisc_2> getAll() {
         return dao.findAll();
     }
 
     @Override
-    public void remove(AudioDisc audioDisc) {
+    public void remove(AudioDisc_2 audioDisc) {
         dao.remove(audioDisc);
     }
 
     @Override
-    public AudioDisc findById(Long id) {
+    public AudioDisc_2 findById(Long id) {
         return dao.findById(id);
     }
 }

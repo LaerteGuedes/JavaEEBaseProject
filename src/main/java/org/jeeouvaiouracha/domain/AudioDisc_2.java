@@ -1,15 +1,14 @@
 package org.jeeouvaiouracha.domain;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import java.io.Serializable;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  * Created by laerteguedes on 09/12/16.
  */
 @Entity
-@DiscriminatorValue("AUDIO")
-public class AudioDisc extends Disc{
+@PrimaryKeyJoinColumn(name = "DISC_ID")
+public class AudioDisc_2 extends Disc_2 {
 
     private Integer noOfSongs;
     private String artist;
@@ -28,13 +27,5 @@ public class AudioDisc extends Disc{
 
     public void setArtist(String artist) {
         this.artist = artist;
-    }
-
-    @Override
-    public String toString() {
-        return "AudioDisc{" +
-                "noOfSongs=" + noOfSongs +
-                ", artist='" + artist + '\'' +
-                '}';
     }
 }
