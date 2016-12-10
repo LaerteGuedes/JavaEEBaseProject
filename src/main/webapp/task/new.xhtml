@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/_layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{taskBean.task.id}"/>
+        <f:viewAction action="#{taskBean.load(taskBean.task.id)}" if="#{param.id != null}"/>
+    </f:metadata>
+
+    <ui:define name="titulo">
+        Adicionar Tarefa
+    </ui:define>
+
+    <ui:define name="conteudo">
+        <h:form id="task">
+            <p:growl id="msgs" showDetail="true" globalOnly="true" autoUpdate="true"/>
+            <h:panelGroup rendered="#{facesContext.validationFailed}">
+                <p>Validation has failed.</p>
+            </h:panelGroup>
+            <p:fieldset legend="Dados da tarefa">
+                <h:panelGrid columns="3">
+                    <p:outputLabel value="Titulo:" for="title" />
+                    <p:inputText id="title" value="#{taskBean.task.title}" required="true">
+                        <f:ajax event="blur" render="messageTitle" />
+                    </p:inputText>
+                    <p:message for="title" id="messageTitle" />
+
+                    <p:outputLabel value="Descrição:" for="description" />
+                    <p:inputText id="description" value="#{taskBean.task.description}" required="true">
+                        <f:ajax event="blur" render="messageDescription" />
+                    </p:inputText>
+                    <p:message for="description" id="messageDescription" />
+
+                    <p:outputLabel value="Criador:" for="creator" />
+                    <p:selectOneMenu id="creator" value="#{taskBean.task.creator}" required="true">
+                        <f:selectItem itemLabel="Selecione..." itemValue=""/>
+                        <f:selectItems value="#{taskBean.users}" var="creator" itemLabel="#{creator.person.name}" itemValue="#{creator}"/>
+                    </p:selectOneMenu>
+                    <p:message for="creator" id="messageCreator" showSummary="false" showDetail="true"/>
+
+                    <p:outputLabel value="Atribuido para:" for="attributed"/>
+                    <p:selectOneMenu id="attributed" value="#{taskBean.task.attributed}" required="true">
+                        <f:selectItem itemLabel="Selecione..." itemValue=""/>
+                        <f:selectItems value="#{taskBean.users}" var="attributed" itemLabel="#{attributed.person.name}" itemValue="#{attributed}"/>
+                    </p:selectOneMenu>
+                    <p:message for="attributed" id="messageAttributed" />
+
+                </h:panelGrid>
+                <p:separator/>
+                <c:choose>
+                    <c:when test="${taskBean.task.id != null}">
+                        <p:commandButton value="Finalizar edição" update="task" action="#{taskBean.update(taskBean.task)}" />
+                    </c:when>
+                    <c:otherwise>
+                        <p:commandButton value="Cadastrar" update="task" action="#{taskBean.add(taskBean.task)}" />
+                    </c:otherwise>
+                </c:choose>
+            </p:fieldset>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

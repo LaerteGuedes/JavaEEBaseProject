@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "user")
-public class User extends AbstractEntity{
+public class User extends AbstractEntity implements Serializable{
 
     @Embedded
     private Person person = new Person();
@@ -50,6 +50,28 @@ public class User extends AbstractEntity{
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (getPerson() != null ? !getPerson().equals(user.getPerson()) : user.getPerson() != null) return false;
+        if (!getEmail().equals(user.getEmail())) return false;
+
+        return getPassword().equals(user.getPassword());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getPerson() != null ? getPerson().hashCode() : 0;
+        result = 31 * result + getEmail().hashCode();
+        result = 31 * result + getPassword().hashCode();
+        return result;
     }
 
     @Override
