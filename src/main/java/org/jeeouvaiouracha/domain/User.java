@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "user")
-public class User extends AbstractEntity{
+public class User extends AbstractEntity implements Serializable{
 
     @Embedded
     private Person person = new Person();
