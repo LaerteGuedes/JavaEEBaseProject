@@ -24,10 +24,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        
         org.jeeouvaiouracha.domain.User u = userDao.findByEmail(username);
-
-        System.out.println("\nTAMO AQUI");
-        System.out.println("User: "+u+"\n");
 
         if (u == null){
             throw new UsernameNotFoundException("Usuário não encontrado");

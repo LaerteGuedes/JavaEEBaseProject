@@ -21,15 +21,17 @@ public class CustomPhaseListener implements PhaseListener{
         List<FacesMessage> messages = phaseEvent.getFacesContext().getMessageList();
 
         if (messages.size() > 0){
-//            if (!phaseEvent.getPhaseId().equals(1)){
-//                phaseEvent.getFacesContext().getExternalContext().getFlash().setKeepMessages(true);
-//
-//                for(FacesMessage message: messages){
-//                    phaseEvent.getFacesContext().addMessage(null, message);
-//                }
-//            }
+            if (!phaseEvent.getPhaseId().equals(1)){
+                phaseEvent.getFacesContext().getExternalContext().getFlash().setKeepMessages(true);
+
+                for(FacesMessage message: messages){
+                    phaseEvent.getFacesContext().addMessage(null, message);
+                }
+            }
         }
     }
+
+
 
     @Override
     public PhaseId getPhaseId() {

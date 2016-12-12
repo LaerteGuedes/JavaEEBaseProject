@@ -23,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         System.out.println("\nSECURITY CONFIGURATION\n");
         System.out.println("\nUsuario details Service \n"+usuarioDetailsService.getClass());
 
-        http.authorizeRequests().antMatchers("/**").permitAll()
+        http.authorizeRequests().antMatchers("/user/new.phtml").permitAll()
                 .antMatchers("/login.xhtml").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/resources/**").permitAll()
@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticated().and()
                 .formLogin()
                 .loginPage("/login.xhtml")
-                .loginProcessingUrl("/login")
+                .loginProcessingUrl("/j_spring_security_check")
                 .failureUrl("/login.xhtml?error=true")
                 .defaultSuccessUrl("/user/list.xhtml")
                 .and().csrf().disable();
