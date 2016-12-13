@@ -14,42 +14,7 @@ import java.util.List;
  * Created by laerteguedes on 25/11/16.
  */
 @Named
-public class UserDaoImpl implements UserDao {
-
-    @PersistenceContext
-    EntityManager em;
-
-    private Dao<User> dao;
-
-    @PostConstruct
-    void init(){
-        this.dao = new DaoImpl(em, User.class);
-    }
-
-    @Override
-    public void add(User user) {
-        dao.add(user);
-    }
-
-    @Override
-    public void update(User user) {
-        dao.update(user);
-    }
-
-    @Override
-    public void remove(User user) {
-        dao.remove(user);
-    }
-
-    @Override
-    public User findById(Long id) {
-        return dao.findById(id);
-    }
-
-    @Override
-    public List<User> findAll() {
-        return dao.findAll();
-    }
+public class UserDaoImpl extends DaoImpl<User> implements UserDao {
 
     @Override
     public List<User> findAllPaginate(int firstResult, int maxResults) {
