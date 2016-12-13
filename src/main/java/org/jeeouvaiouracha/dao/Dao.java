@@ -1,12 +1,16 @@
 package org.jeeouvaiouracha.dao;
 
+import org.jeeouvaiouracha.domain.AbstractEntity;
+
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by laerteguedes on 24/10/16.
  */
-public interface Dao<T> extends Serializable{
+public interface Dao<T extends AbstractEntity>{
+
 
     void add(T t);
 

@@ -23,6 +23,10 @@ public class User extends AbstractEntity implements Serializable{
     @Size(min = 5)
     private String password;
 
+    @ManyToOne
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
+
     public String getEmail() {
         return email;
     }
@@ -50,6 +54,14 @@ public class User extends AbstractEntity implements Serializable{
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     @Override

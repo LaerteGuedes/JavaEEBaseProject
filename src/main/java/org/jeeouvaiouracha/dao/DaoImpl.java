@@ -1,25 +1,29 @@
 package org.jeeouvaiouracha.dao;
 
+import org.jeeouvaiouracha.domain.AbstractEntity;
+
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
  * Created by laerteguedes on 20/10/16.
  */
-public class DaoImpl<T> implements Dao<T>{
+public class DaoImpl<T extends AbstractEntity> implements Dao<T>{
 
     private final Class<T> classe;
-    private EntityManager em;
 
-    public DaoImpl(EntityManager em, Class<T> classe) {
-        this.em = em;
-        this.classe = classe;
+    @PersistenceContext
+    protected EntityManager em;
+
+    public DaoImpl() {
+        this.classe = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     @Override
     public void add(T t) {
-        System.out.println("ENTITY MANAGER "+em);
         em.persist(t);
     }
 
